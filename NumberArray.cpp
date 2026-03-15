@@ -14,6 +14,12 @@ NumberArray::NumberArray(int size)
 	{
 		size = size;
 	}
+
+	data = new double[size];
+	for (int a = 0; a < size; a++)
+	{
+		data[a] = 0.0;
+	}
 }
 
 NumberArray::~NumberArray()
@@ -43,12 +49,15 @@ double NumberArray::getNumber(int index) const
 	else
 	{
 		cout << "There was an error, the index is out of bounds.\n";
+		return -9999.0;
 	}
 }
 
 double NumberArray::getMin() const
 {
-	double min = 0;
+	if (size == 0) return 0;
+
+	double min = data[0];
 	for (int a = 0; a < size; a++)
 	{
 		if (data[a] < min)
@@ -61,7 +70,9 @@ double NumberArray::getMin() const
 
 double NumberArray::getMax() const
 {
-	double max = 0;
+	if (size == 0) return 0;
+
+	double max = data[0];
 	for (int a = 0; a < size; a++)
 	{
 		if (data[a] > max)
@@ -74,7 +85,7 @@ double NumberArray::getMax() const
 
 double NumberArray::getAverage() const
 {
-	double total;
+	double total = 0;
 	for (int a = 0; a < size; a++)
 	{
 		total += data[a];
@@ -89,4 +100,6 @@ void NumberArray::print() const
 	{
 		cout << data[a] << " ";
 	}
+	
+	//cout << getMax();
 }
