@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-NumberArray::NumberArray(int size)
+NumberArray::NumberArray(int area)
 {
 	if (size <= 0)
 	{
@@ -12,7 +12,7 @@ NumberArray::NumberArray(int size)
 	}
 	else 
 	{
-		size = size;
+		size = area;
 	}
 
 	data = new double[size];
@@ -36,7 +36,7 @@ void NumberArray::setNumber(int index, double value)
 	}
 	else
 	{
-		cout << "There was an error, the index is out of bounds.\n";
+		cout << "setNumber - There was an error, the index is out of bounds.\n";
 	}
 }
 
@@ -48,7 +48,7 @@ double NumberArray::getNumber(int index) const
 	}
 	else
 	{
-		cout << "There was an error, the index is out of bounds.\n";
+		cout << "getNumber - There was an error, the index is out of bounds.\n";
 		return -9999.0;
 	}
 }
@@ -95,11 +95,14 @@ double NumberArray::getAverage() const
 
 void NumberArray::print() const
 {
-	cout << "Array Information:\n";
+	cout << "Array Values:\n";
 	for (int a = 0; a < size; a++)
 	{
 		cout << data[a] << " ";
 	}
 	
-	//cout << getMax();
+	cout << endl;
+	cout << "Max value: " << getMax() << endl;
+	cout << "Min value: " << getMin() << endl;
+	cout << "Average " << getAverage() << endl;
 }
