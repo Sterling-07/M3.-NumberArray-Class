@@ -13,7 +13,11 @@ class NumberArray
 	public:
 		NumberArray(int size = MAX_SIZE);
 
+		NumberArray(const NumberArray& other);
+
 		~NumberArray();
+
+		NumberArray& operator =(const NumberArray& other);
 
 		void setNumber(int index, double value);
 

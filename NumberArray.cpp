@@ -6,7 +6,7 @@ using namespace std;
 
 NumberArray::NumberArray(int area)
 {
-	if (size <= 0)
+	if (area <= 0)
 	{
 		size = MAX_SIZE;
 	}
@@ -22,10 +22,38 @@ NumberArray::NumberArray(int area)
 	}
 }
 
+NumberArray::NumberArray(const NumberArray& other)
+{
+	size = other.size;
+	data = new double[size];
+
+	for (int a = 0; a < size; a++)
+	{
+		data[a] = other.data[a];
+	}
+}
+
 NumberArray::~NumberArray()
 {
 	delete[] data;
 	cout << "Destructor has released its memory.\n";
+}
+
+NumberArray& NumberArray::operator=(const NumberArray& other)
+{
+	if (this == &other)
+	{
+		delete[] data;
+
+		size = other.size;
+		data = new double[size];
+
+		for (int a = 0; a < size; a++)
+		{
+			data[a] = other.data[a];
+		}
+		return *this;
+	}
 }
 
 void NumberArray::setNumber(int index, double value)
