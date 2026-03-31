@@ -52,8 +52,8 @@ NumberArray& NumberArray::operator=(const NumberArray& other)
 		{
 			data[a] = other.data[a];
 		}
-		return *this;
 	}
+	return *this;
 }
 
 void NumberArray::setNumber(int index, double value)
