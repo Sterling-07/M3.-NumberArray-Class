@@ -41,7 +41,7 @@ NumberArray::~NumberArray()
 
 NumberArray& NumberArray::operator=(const NumberArray& other)
 {
-	if (this == &other)
+	if (this != &other)
 	{
 		delete[] data;
 
