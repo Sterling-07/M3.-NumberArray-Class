@@ -132,5 +132,5 @@ void NumberArray::print() const
 	cout << endl;
 	cout << "Max value: " << getMax() << endl;
 	cout << "Min value: " << getMin() << endl;
-	cout << "Average " << getAverage() << endl;
+	cout << "Average: " << getAverage() << endl;
 }
