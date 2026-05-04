@@ -3,15 +3,15 @@
 #include <array>
 using namespace std;
 
+template <typename T>
 class NumberArray 
 {
 	private:
 		int size;
-		static const int MAX_SIZE = 10;
-		double* data;
+		T* data;
 
 	public:
-		NumberArray(int size = MAX_SIZE);
+		NumberArray(int size = 10);
 
 		NumberArray(const NumberArray& other);
 
