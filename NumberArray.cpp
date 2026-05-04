@@ -4,15 +4,28 @@
 #include <iostream>
 using namespace std;
 
-NumberArray::NumberArray(int area)
+template <typename T>
+void NumberArray<T>::allocateAndInint(int newSize)
+{
+	size = newSize;
+	data = new T[size];
+
+	for (int a = 0; a < size; a++)
+	{
+		data[a] = T{};
+	}
+}
+
+template <typename T>
+NumberArray<T>::NumberArray(int area)
 {
 	if (area <= 0)
 	{
-		size = MAX_SIZE;
+		aalocateAndInint(10);
 	}
 	else 
 	{
-		size = area;
+		allocateAndInint(area);
 	}
 
 	data = new double[size];
@@ -22,10 +35,10 @@ NumberArray::NumberArray(int area)
 	}
 }
 
-NumberArray::NumberArray(const NumberArray& other)
+template <typename T>
+NumberArray<T>::NumberArray(const NumberArray<T>& other)
 {
-	size = other.size;
-	data = new double[size];
+	allocateAndInint(other.size);
 
 	for (int a = 0; a < size; a++)
 	{
@@ -33,13 +46,16 @@ NumberArray::NumberArray(const NumberArray& other)
 	}
 }
 
-NumberArray::~NumberArray()
+template <typename T>
+NumberArray<T>::~NumberArray()
 {
 	delete[] data;
-	cout << "Destructor has released its memory.\n";
+	data = nullptr;
+	size = 0;
 }
 
-NumberArray& NumberArray::operator=(const NumberArray& other)
+template <typename T>
+NumberArray<T>& NumberArray<T>::operator=(const NumberArray<T>& other)
 {
 	if (this != &other)
 	{
@@ -56,7 +72,8 @@ NumberArray& NumberArray::operator=(const NumberArray& other)
 	return *this;
 }
 
-void NumberArray::setNumber(int index, double value)
+template <typename T>
+void NumberArray<T>::setNumber(int index, T value)
 {
 	if (index >= 0 && index < size)
 	{
@@ -68,7 +85,8 @@ void NumberArray::setNumber(int index, double value)
 	}
 }
 
-double NumberArray::getNumber(int index) const
+template <typename T>
+T NumberArray<T>::getNumber(int index) const
 {
 	if (index >= 0 && index < size)
 	{
@@ -81,7 +99,8 @@ double NumberArray::getNumber(int index) const
 	}
 }
 
-double NumberArray::getMin() const
+template <typename T>
+T NumberArray<T>::getMin() const
 {
 	if (size == 0) return 0;
 
@@ -96,7 +115,8 @@ double NumberArray::getMin() const
 	return min;
 }
 
-double NumberArray::getMax() const
+template <typename T>
+T NumberArray<T>::getMax() const
 {
 	if (size == 0) return 0;
 
@@ -111,7 +131,8 @@ double NumberArray::getMax() const
 	return max;
 }
 
-double NumberArray::getAverage() const
+template <typename T>
+double NumberArray<T>::getAverage() const
 {
 	double total = 0;
 	for (int a = 0; a < size; a++)
@@ -121,7 +142,8 @@ double NumberArray::getAverage() const
 	return total/size;
 }
 
-void NumberArray::print() const
+template <typename T>
+void NumberArray<T>::print() const
 {
 	cout << "Array Values:\n";
 	for (int a = 0; a < size; a++)

@@ -10,21 +10,23 @@ class NumberArray
 		int size;
 		T* data;
 
+		void allocateAndInint(int newSize);
+
 	public:
 		NumberArray(int size = 10);
 
-		NumberArray(const NumberArray& other);
+		NumberArray(const NumberArray<T>& other);
 
 		~NumberArray();
 
-		NumberArray& operator =(const NumberArray& other);
+		NumberArray<T>& operator =(const NumberArray<T>& other);
 
-		void setNumber(int index, double value);
+		void setNumber(int index, T value);
 
-		double getNumber(int index) const;
+		T getNumber(int index) const;
 
-		double getMin() const;
-		double getMax() const;
+		T getMin() const;
+		T getMax() const;
 		double getAverage() const;
 
 		void print() const;
