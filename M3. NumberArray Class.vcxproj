@@ -124,10 +124,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="M3. NumberArray Class.cpp" />
-    <ClCompile Include="NumberArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NumberArray.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NumberArray.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

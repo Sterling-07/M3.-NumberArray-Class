@@ -8,20 +8,36 @@ using namespace std;
 
 int main()
 {
+	cout << "\nNumberArray<int>\n";
+	NumberArray<int> a(4);
 
-
-	int size = 10;
-	random_device engine;
-	uniform_real_distribution<double> randomNum(0.0, 10.0);
-	NumberArray arr(size);
-
-	for (int a = 0; a < size; a++)
+	for (int b = 0; b < 4; b++)
 	{
-		arr.setNumber(a, randomNum(engine));
+		a.setNumber(b, b * 2);
 	}
+	a.print();
 
-	arr.print();
-	cout << endl;
+	cout << "\nNumberArray<double>\n";
+	NumberArray<double> e(4);
+	e.setNumber(0, 1.50);
+	e.setNumber(1, 3.65);
+	e.setNumber(2, 5.47);
+	e.setNumber(3, 6.98);
+	e.print();
+
+	cout << "\nCopy Constructor\n";
+	NumberArray<int> c(a);
+	c.print();
+
+	cout << "\nException Handling\n";
+	try
+	{
+		a.getNumber(50);
+	}
+	catch (const out_of_range& d)
+	{
+		cout << "Exception cuaght: " << d.what() << endl;
+	}
 
 	return 0;
 }

@@ -1,11 +1,10 @@
 
 #include "NumberArray.h"
-#include <array>
 #include <iostream>
 using namespace std;
 
 template <typename T>
-void NumberArray<T>::allocateAndInint(int newSize)
+void NumberArray<T>::allocateAndInit(int newSize)
 {
 	size = newSize;
 	data = new T[size];
@@ -21,24 +20,18 @@ NumberArray<T>::NumberArray(int area)
 {
 	if (area <= 0)
 	{
-		aalocateAndInint(10);
+		allocateAndInit(10);
 	}
 	else 
 	{
-		allocateAndInint(area);
-	}
-
-	data = new double[size];
-	for (int a = 0; a < size; a++)
-	{
-		data[a] = 0.0;
+		allocateAndInit(area);
 	}
 }
 
 template <typename T>
 NumberArray<T>::NumberArray(const NumberArray<T>& other)
 {
-	allocateAndInint(other.size);
+	allocateAndInit(other.size);
 
 	for (int a = 0; a < size; a++)
 	{

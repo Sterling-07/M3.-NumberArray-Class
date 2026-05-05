@@ -10,7 +10,7 @@ class NumberArray
 		int size;
 		T* data;
 
-		void allocateAndInint(int newSize);
+		void allocateAndInit(int newSize);
 
 	public:
 		NumberArray(int size = 10);
@@ -31,3 +31,5 @@ class NumberArray
 
 		void print() const;
 };
+
+#include "NumberArray.tpp"
