@@ -61,8 +61,7 @@ NumberArray<T>& NumberArray<T>::operator=(const NumberArray<T>& other)
 	{
 		delete[] data;
 
-		size = other.size;
-		data = new double[size];
+		allocateAndInit(other.size);
 
 		for (int a = 0; a < size; a++)
 		{
@@ -75,37 +74,35 @@ NumberArray<T>& NumberArray<T>::operator=(const NumberArray<T>& other)
 template <typename T>
 void NumberArray<T>::setNumber(int index, T value)
 {
-	if (index >= 0 && index < size)
+	if (index < 0 || index >= size)
 	{
-		data[index] = value;
+		throw out_of_range("The index is out of range.\n");
 	}
-	else
-	{
-		cout << "setNumber - There was an error, the index is out of bounds.\n";
-	}
+	
+	data[index] = value;
 }
 
 template <typename T>
 T NumberArray<T>::getNumber(int index) const
 {
-	if (index >= 0 && index < size)
+	if (index < 0 || index >= size)
 	{
-		return data[index];
+		throw out_of_range("The index is out of range.\n");
 	}
-	else
-	{
-		cout << "getNumber - There was an error, the index is out of bounds.\n";
-		return -9999.0;
-	}
+	
+	return data[index];
 }
 
 template <typename T>
 T NumberArray<T>::getMin() const
 {
-	if (size == 0) return 0;
+	if (size == 0)
+	{
+		throw out_of_range("The array is empty.\n");
+	}
 
-	double min = data[0];
-	for (int a = 0; a < size; a++)
+	T min = data[0];
+	for (int a = 1; a < size; a++)
 	{
 		if (data[a] < min)
 		{
@@ -118,10 +115,13 @@ T NumberArray<T>::getMin() const
 template <typename T>
 T NumberArray<T>::getMax() const
 {
-	if (size == 0) return 0;
+	if (size == 0)
+	{
+		throw out_of_range("The array is empty.\n");
+	}
 
-	double max = data[0];
-	for (int a = 0; a < size; a++)
+	T max = data[0];
+	for (int a = 1; a < size; a++)
 	{
 		if (data[a] > max)
 		{
@@ -134,11 +134,17 @@ T NumberArray<T>::getMax() const
 template <typename T>
 double NumberArray<T>::getAverage() const
 {
+	if (size == 0)
+	{
+		throw out_of_range("The array is empty.\n");
+	}
+
 	double total = 0;
 	for (int a = 0; a < size; a++)
 	{
-		total += data[a];
+		total += static_cast<double>(data[a]);
 	}
+
 	return total/size;
 }
 

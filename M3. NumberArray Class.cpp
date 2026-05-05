@@ -8,6 +8,8 @@ using namespace std;
 
 int main()
 {
+
+
 	int size = 10;
 	random_device engine;
 	uniform_real_distribution<double> randomNum(0.0, 10.0);
